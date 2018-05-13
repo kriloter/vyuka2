@@ -62,6 +62,18 @@ class Bojovnik:
     def nazive(self):
         return self.__zivot > 0
 
+    @property
+    def utok(self):
+        return self.__utok
+
+    @property
+    def obrana(self):
+        return self.__obrana
+
+    @property
+    def zivot(self):
+        return "{0}/{1}".format(self.__zivot, self.__max_zivot)
+
     def graficky_zivot(self):
         """
         Graficka reprezentacia zivota bojovnika.
@@ -76,5 +88,8 @@ class Bojovnik:
 kocka = Kocka(10)
 bojovnik_1 = Bojovnik("Bananko", 100, 20, 10, kocka)
 print("Bojovnik: {0}".format(bojovnik_1))
+print("Zivot: {0}".format(bojovnik_1.zivot))
+print("Utok: {0}".format(bojovnik_1.utok))
+print("Obrana: {0}".format(bojovnik_1.obrana))
 print("Nazive: {0}".format(bojovnik_1.nazive))
 print("Zivot: {0}".format(bojovnik_1.graficky_zivot()))
