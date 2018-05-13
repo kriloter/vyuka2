@@ -26,16 +26,55 @@ class Kocka:
         """
         return str("Kocka s {0} stenami".format(self.__pocet_stien))
 
-# vytvorenie kociek
-kocka6 = Kocka()
-kocka10 = Kocka(10)
+class Bojovnik:
+    """
+    Trieda reprezentuje bojovnika v arene.
+    """
 
-# hod kockou 6
-print(kocka6)
-for _ in range(10):
-    print(kocka6.hod(), end = " ")
+    def __init__(self, meno, zivot, utok, obrana, kocka):
+        """
+        meno - meno bojovnika
+        zivot - maximalny zivot
+        utok - utok bojovnika
+        obrana - obrana bojovnika
+        kocka - instancia kocky
+        """
+        self.__meno = meno
+        self.__zivot = zivot
+        self.__max_zivot = zivot
+        self.__utok = utok
+        self.__obrana = obrana
+        self.__kocka = kocka
 
-# hod kockou 10
-print("\n", kocka10)
-for _ in range(10):
-    print(kocka10.hod(), end = " ")
+    def __str__(self):
+        """
+        Vracia textovu reprezentaciu bojovnika.
+        """
+        return str(self.__meno)
+
+    def __repr__(self):
+        """
+        Co ja viem ...
+        """
+        return str(self.__meno)
+
+    @property
+    def nazive(self):
+        return self.__zivot > 0
+
+    def graficky_zivot(self):
+        """
+        Graficka reprezentacia zivota bojovnika.
+        """
+        celkom = 20
+        pocet = int(self.__zivot / self.__max_zivot * celkom)
+        if (pocet == 0 and self.nazive):
+            pocet = 1
+        return "[{0}{1}]".format("#"*pocet, " "*(celkom - pocet))
+
+
+kocka = Kocka(10)
+bojovnik_1 = Bojovnik("Bananko", 100, 20, 10, kocka)
+print("Bojovnik: {0}".format(bojovnik_1))
+print("Nazive: {0}".format(bojovnik_1.nazive))
+print("Zivot: {0}".format(bojovnik_1.graficky_zivot()))
