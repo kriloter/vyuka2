@@ -84,6 +84,21 @@ class Bojovnik:
             pocet = 1
         return "[{0}{1}]".format("#"*pocet, " "*(celkom - pocet))
 
+    def bran_sa(self, uder):
+        """
+        Obrana
+        """
+        zranenie = uder - (self.__obrana + self.__kocka.hod())
+        if zranenie > 0:
+            self.__zivot = self.__zivot - zranenie
+            if self.__zivot < 0:
+                self.__zivot = 0
+
+    def utoc(self, super):
+        uder = self.__utok + self.__kocka.hod()
+        super.bran_sa()
+
+
 
 kocka = Kocka(10)
 bojovnik_1 = Bojovnik("Bananko", 100, 20, 10, kocka)
